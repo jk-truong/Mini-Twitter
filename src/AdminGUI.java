@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  *
  * @author Josh
@@ -17,6 +19,7 @@ public class AdminGUI extends javax.swing.JFrame {
       initComponents();
    }
 
+
    /**
     * This method is called from within the constructor to initialize the form.
     * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,8 +30,8 @@ public class AdminGUI extends javax.swing.JFrame {
    private void initComponents() {
 
       rightPanel = new javax.swing.JPanel();
-      userId = new javax.swing.JTextArea();
-      groupId = new javax.swing.JTextArea();
+      userName = new javax.swing.JTextField();
+      groupName = new javax.swing.JTextField();
       addUserButton = new javax.swing.JButton();
       addGroupButton = new javax.swing.JButton();
       userViewButton = new javax.swing.JButton();
@@ -42,16 +45,14 @@ public class AdminGUI extends javax.swing.JFrame {
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-      userId.setEditable(false);
-      userId.setColumns(20);
-      userId.setRows(5);
-      userId.setText("User ID");
+      userName.setEditable(false);
+      userName.setColumns(20);
+      userName.setText("User Name");
 
-      groupId.setEditable(false);
-      groupId.setColumns(20);
-      groupId.setRows(5);
-      groupId.setText("Group ID");
-      groupId.setToolTipText("");
+      groupName.setEditable(false);
+      groupName.setColumns(20);
+      groupName.setText("Group Name");
+      groupName.setToolTipText("");
 
       addUserButton.setText("Add User");
       addUserButton.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +93,8 @@ public class AdminGUI extends javax.swing.JFrame {
                                       .addComponent(userViewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                       .addGroup(rightPanelLayout.createSequentialGroup()
                                               .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                      .addComponent(userId, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                                      .addComponent(groupId))
+                                                      .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                                      .addComponent(groupName))
                                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                               .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                       .addComponent(addUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,10 +118,10 @@ public class AdminGUI extends javax.swing.JFrame {
                                       .addGroup(rightPanelLayout.createSequentialGroup()
                                               .addGap(1, 1, 1)
                                               .addComponent(addUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                      .addComponent(userId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                      .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                               .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                      .addComponent(groupId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                      .addComponent(groupName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                       .addComponent(addGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                               .addGap(18, 18, 18)
                               .addComponent(userViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,6 +135,12 @@ public class AdminGUI extends javax.swing.JFrame {
                                       .addComponent(showGroupTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                               .addGap(406, 406, 406))
       );
+
+      jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
+         public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jTree1MouseClicked(evt);
+         }
+      });
 
       jScrollPane1.setViewportView(jTree1);
 
@@ -171,6 +178,15 @@ public class AdminGUI extends javax.swing.JFrame {
 
       pack();
    }// </editor-fold>
+
+   /* This gets selected node text into jtext fields*/
+   private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {
+      DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
+      userName.setText("User Name: " + selectedNode.getUserObject().toString());
+      if (selectedNode.getParent() != null) {
+         groupName.setText("Group Name: " + selectedNode.getParent().toString());
+      }
+   }
 
    /* This opens the User GUI */
    private void userViewButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +243,7 @@ public class AdminGUI extends javax.swing.JFrame {
    // Variables declaration - do not modify
    private javax.swing.JButton addGroupButton;
    private javax.swing.JButton addUserButton;
-   private javax.swing.JTextArea groupId;
+   private javax.swing.JTextField groupName;
    private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JTree jTree1;
    private javax.swing.JPanel leftPanel;
@@ -236,7 +252,7 @@ public class AdminGUI extends javax.swing.JFrame {
    private javax.swing.JButton showMessageTotalButton;
    private javax.swing.JButton showPositivePercentageButton;
    private javax.swing.JButton showTotalButton;
-   private javax.swing.JTextArea userId;
+   private javax.swing.JTextField userName;
    private javax.swing.JButton userViewButton;
    // End of variables declaration
 }
