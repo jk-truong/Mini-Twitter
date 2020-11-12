@@ -1,7 +1,10 @@
+import java.util.List;
 import java.util.UUID;
 
 public class UserGroup implements UserSystem {
 
+   /* The list contains users and groups within this group. */
+   private List<UserSystem> userGroups;
    private UUID groupID;
    private String name;
 
@@ -12,6 +15,18 @@ public class UserGroup implements UserSystem {
       group.setName(name);
 
       System.out.println("Group added: " + group.displayName());
+   }
+
+   public List<UserSystem> getUserGroups() {
+      return userGroups;
+   }
+
+   public void setUserGroups(List<UserSystem> userGroups) {
+      this.userGroups = userGroups;
+   }
+
+   public void addUserGroups(UserSystem userGroup) {
+      userGroups.add(userGroup);
    }
 
    public UUID displayID() {
@@ -28,5 +43,14 @@ public class UserGroup implements UserSystem {
 
    public void setName(String name) {
       this.name = name;
+   }
+
+   @Override
+   public String toString() {
+      return "UserGroup{" +
+              "userGroups=" + userGroups +
+              ", groupID=" + groupID +
+              ", name='" + name + '\'' +
+              '}';
    }
 }

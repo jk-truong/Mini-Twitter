@@ -5,12 +5,14 @@
  */
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
  * @author Josh
  */
 public class AdminGUI extends javax.swing.JFrame {
+
 
    /**
     * Creates new form GUI
@@ -28,10 +30,7 @@ public class AdminGUI extends javax.swing.JFrame {
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">
    private void initComponents() {
-
       rightPanel = new javax.swing.JPanel();
-      userName = new javax.swing.JTextField();
-      groupName = new javax.swing.JTextField();
       addUserButton = new javax.swing.JButton();
       addGroupButton = new javax.swing.JButton();
       userViewButton = new javax.swing.JButton();
@@ -39,20 +38,17 @@ public class AdminGUI extends javax.swing.JFrame {
       showGroupTotalButton = new javax.swing.JButton();
       showMessageTotalButton = new javax.swing.JButton();
       showPositivePercentageButton = new javax.swing.JButton();
+      userName = new javax.swing.JTextField();
+      groupName = new javax.swing.JTextField();
+      nameTextField = new javax.swing.JTextField();
+      groupTextField = new javax.swing.JTextField();
+      jTextFieldUser = new javax.swing.JTextField();
+      jTextFieldGroup = new javax.swing.JTextField();
       leftPanel = new javax.swing.JPanel();
       jScrollPane1 = new javax.swing.JScrollPane();
       jTree1 = new javax.swing.JTree();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-      userName.setEditable(false);
-      userName.setColumns(20);
-      userName.setText("User Name");
-
-      groupName.setEditable(false);
-      groupName.setColumns(20);
-      groupName.setText("Group Name");
-      groupName.setToolTipText("");
 
       addUserButton.setText("Add User");
       addUserButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +79,18 @@ public class AdminGUI extends javax.swing.JFrame {
 
       showPositivePercentageButton.setText("Show Positive Percentage");
 
+      userName.setEditable(false);
+      userName.setText("User Name: ");
+
+      groupName.setEditable(false);
+      groupName.setText("Group Name: ");
+
+      jTextFieldUser.setEditable(false);
+      jTextFieldUser.setText("Enter User Name:");
+
+      jTextFieldGroup.setEditable(false);
+      jTextFieldGroup.setText("Enter Group Name:");
+
       javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
       rightPanel.setLayout(rightPanelLayout);
       rightPanelLayout.setHorizontalGroup(
@@ -92,40 +100,49 @@ public class AdminGUI extends javax.swing.JFrame {
                               .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                       .addComponent(userViewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                       .addGroup(rightPanelLayout.createSequentialGroup()
-                                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                      .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                                      .addComponent(groupName))
-                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                      .addComponent(addUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                      .addComponent(addGroupButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                      .addGroup(rightPanelLayout.createSequentialGroup()
                                               .addComponent(showTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                                               .addComponent(showMessageTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                      .addComponent(userName)
+                                      .addComponent(groupName)
                                       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
-                                              .addGap(0, 0, Short.MAX_VALUE)
                                               .addComponent(showGroupTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                              .addComponent(showPositivePercentageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                              .addComponent(showPositivePercentageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                      .addGroup(rightPanelLayout.createSequentialGroup()
+                                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                      .addComponent(jTextFieldUser)
+                                                      .addComponent(jTextFieldGroup))
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                      .addComponent(groupTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                                      .addComponent(nameTextField))
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                      .addComponent(addUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                      .addComponent(addGroupButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))))
                               .addContainerGap())
       );
       rightPanelLayout.setVerticalGroup(
               rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                       .addGroup(rightPanelLayout.createSequentialGroup()
-                              .addContainerGap()
-                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                      .addGroup(rightPanelLayout.createSequentialGroup()
-                                              .addGap(1, 1, 1)
-                                              .addComponent(addUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                      .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                              .addGap(12, 12, 12)
+                              .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                      .addComponent(groupName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                      .addComponent(addGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGap(18, 18, 18)
+                              .addComponent(groupName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                      .addComponent(addUserButton)
+                                      .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                      .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                              .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                      .addComponent(jTextFieldGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                      .addComponent(groupTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                      .addComponent(addGroupButton))
+                              .addGap(102, 102, 102)
                               .addComponent(userViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addGap(123, 123, 123)
+                              .addGap(18, 18, 18)
                               .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                       .addComponent(showTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                       .addComponent(showMessageTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -141,7 +158,6 @@ public class AdminGUI extends javax.swing.JFrame {
             jTree1MouseClicked(evt);
          }
       });
-
       jScrollPane1.setViewportView(jTree1);
 
       javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -179,7 +195,7 @@ public class AdminGUI extends javax.swing.JFrame {
       pack();
    }// </editor-fold>
 
-   /* This gets selected node text into jtext fields*/
+   /* This gets selected node text and displays it into jtext fields */
    private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {
       DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
       userName.setText("User Name: " + selectedNode.getUserObject().toString());
@@ -188,20 +204,60 @@ public class AdminGUI extends javax.swing.JFrame {
       }
    }
 
+   /* This adds a user to the tree */
+   private void addUser(String name) {
+      DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
+      DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(name);
+      selectedNode.add(newNode);
+
+      // Reload jTree model
+      DefaultTreeModel model = (DefaultTreeModel)jTree1.getModel();
+      model.reload();
+   }
+
+
    /* This opens the User GUI */
    private void userViewButtonActionPerformed(java.awt.event.ActionEvent evt) {
       UserGUI userGUI = new UserGUI();
       userGUI.setVisible(true);
    }
 
+   String name;
+
    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {
-      EnterNameGUI enterNameGUI = new EnterNameGUI();
-      enterNameGUI.setVisible(true);
+      name = nameTextField.getText();
+      nameTextField.setText("");
+      if (name.isEmpty()){
+         System.out.println("Name cannot be empty");
+      } else {
+         Driver.addUser(name);
+      }
+
+      DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
+      DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(name);
+      selectedNode.add(newNode);
+
+      // reload jtree model
+      DefaultTreeModel model = (DefaultTreeModel)jTree1.getModel();
+      model.reload();
    }
 
    private void addGroupButtonActionPerformed(java.awt.event.ActionEvent evt) {
-      EnterNameGUI enterNameGUI = new EnterNameGUI();
-      enterNameGUI.setVisible(true);
+      name = groupTextField.getText();
+      groupTextField.setText("");
+      if (name.isEmpty()){
+         System.out.println("Name cannot be empty");
+      } else {
+         Driver.addGroup(name);
+      }
+
+      DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
+      DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(name);
+      selectedNode.add(newNode);
+
+      // reload jtree model
+      DefaultTreeModel model = (DefaultTreeModel)jTree1.getModel();
+      model.reload();
    }
 
    /**
@@ -244,9 +300,13 @@ public class AdminGUI extends javax.swing.JFrame {
    private javax.swing.JButton addGroupButton;
    private javax.swing.JButton addUserButton;
    private javax.swing.JTextField groupName;
+   private javax.swing.JTextField groupTextField;
    private javax.swing.JScrollPane jScrollPane1;
+   private javax.swing.JTextField jTextFieldUser;
+   private javax.swing.JTextField jTextFieldGroup;
    private javax.swing.JTree jTree1;
    private javax.swing.JPanel leftPanel;
+   private javax.swing.JTextField nameTextField;
    private javax.swing.JPanel rightPanel;
    private javax.swing.JButton showGroupTotalButton;
    private javax.swing.JButton showMessageTotalButton;

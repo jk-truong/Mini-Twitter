@@ -28,4 +28,12 @@ public class User implements UserSystem {
    public void setName(String name) {
       this.name = name;
    }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "userID=" + userID +
+              ", name='" + name + '\'' +
+              '}';
+   }
 }
