@@ -8,12 +8,12 @@
  *
  * @author Josh
  */
-public class UserGUI extends javax.swing.JFrame {
+public class UserControlPanel extends javax.swing.JFrame {
 
    /**
     * Creates new form UserGUI
     */
-   public UserGUI() {
+   public UserControlPanel() {
       initComponents();
    }
 
@@ -45,7 +45,7 @@ public class UserGUI extends javax.swing.JFrame {
 
       tweetMessage.setColumns(20);
       tweetMessage.setRows(5);
-      tweetMessage.setText("Tweet Message\n");
+      tweetMessage.setToolTipText("Enter your message here");
 
       currentFollowing.setColumns(20);
       currentFollowing.setRows(5);
@@ -139,20 +139,20 @@ public class UserGUI extends javax.swing.JFrame {
             }
          }
       } catch (ClassNotFoundException ex) {
-         java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         java.util.logging.Logger.getLogger(UserControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       } catch (InstantiationException ex) {
-         java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         java.util.logging.Logger.getLogger(UserControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       } catch (IllegalAccessException ex) {
-         java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         java.util.logging.Logger.getLogger(UserControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-         java.util.logging.Logger.getLogger(UserGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         java.util.logging.Logger.getLogger(UserControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       }
       //</editor-fold>
 
       /* Create and display the form */
       java.awt.EventQueue.invokeLater(new Runnable() {
          public void run() {
-            new UserGUI().setVisible(true);
+            new UserControlPanel().setVisible(true);
          }
       });
    }
