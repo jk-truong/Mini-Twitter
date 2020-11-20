@@ -1,27 +1,28 @@
-import javax.swing.tree.DefaultMutableTreeNode;
-import java.util.UUID;
+public class User extends Subject implements SysEntry {
 
-public class User implements SysEntry {
-
-   private UUID userID;
    private String name;
+   private String text;
 
    public User(String name) {
-      UUID uuid = UUID.randomUUID();
       this.name = name;
-      this.userID = uuid;
-
       System.out.println("User added: " + this.name);
    }
 
+   public void setText(String text) {
+      this.text = text;
+      notifyObservers();
+   }
 
-   @Override
+   public String getText() {
+      return name + ": " + text;
+   }
+
    public void showUserDetails() {
       System.out.println("User Name: " + name);
    }
 
-   @Override
    public String toString() {
-      return "\nUser{" + "name='" + name + "' userID='" + userID + '\'' + '}';
+      return name;
+      //return "\nUser{" + "name='" + name + "' userID='" + userID + '\'' + '}';
    }
 }

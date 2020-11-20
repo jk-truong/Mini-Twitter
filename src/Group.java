@@ -1,21 +1,16 @@
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class Group implements SysEntry {
+public class Group extends DefaultMutableTreeNode implements SysEntry {
 
    /* The list contains users and groups within this group. */
    private List<SysEntry> userList = new ArrayList<SysEntry>();
-   private UUID groupID;
    private String name;
 
    public Group(String name) {
-      UUID uuid = UUID.randomUUID();
-
       this.name = name;
-      this.groupID = uuid;
-
       System.out.println("Group added: " + this.name);
    }
 
@@ -35,13 +30,12 @@ public class Group implements SysEntry {
       userList.remove(user);
    }
 
-   @Override
    public void showUserDetails() {
       System.out.println("Group Name: " + name);
    }
 
-   @Override
    public String toString() {
-      return "\nUserGroup{" + "name='" + name + "' groupID='" + groupID + '\'' + '}';
+      return name;
+      //return "\nUserGroup{" + "name='" + name + "' groupID='" + groupID + '\'' + '}';
    }
 }

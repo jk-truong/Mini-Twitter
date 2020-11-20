@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Josh
  */
-public class UserControlPanel extends javax.swing.JFrame {
+public class UserControlPanel extends javax.swing.JFrame implements Observer {
 
    /**
     * Creates new form UserGUI
@@ -35,6 +38,8 @@ public class UserControlPanel extends javax.swing.JFrame {
       newsFeedScroll = new javax.swing.JScrollPane();
       newsFeed = new javax.swing.JTextArea();
       followUser = new javax.swing.JButton();
+      jLabel1 = new javax.swing.JLabel();
+      jLabel2 = new javax.swing.JLabel();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,19 +50,29 @@ public class UserControlPanel extends javax.swing.JFrame {
 
       tweetMessage.setColumns(20);
       tweetMessage.setRows(5);
-      tweetMessage.setToolTipText("Enter your message here");
 
+      currentFollowing.setEditable(false);
       currentFollowing.setColumns(20);
       currentFollowing.setRows(5);
       currentFollowingScroll.setViewportView(currentFollowing);
 
       postTweet.setText("Post Tweet");
+      postTweet.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent evt) {
+            postTweetButtonActionPerformed(evt);
+         }
+      });
 
+      newsFeed.setEditable(false);
       newsFeed.setColumns(20);
       newsFeed.setRows(5);
       newsFeedScroll.setViewportView(newsFeed);
 
       followUser.setText("Follow User");
+
+      jLabel1.setText("Users you are following");
+
+      jLabel2.setText("Chat Box");
 
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
@@ -75,7 +90,12 @@ public class UserControlPanel extends javax.swing.JFrame {
                                       .addGroup(jPanel1Layout.createSequentialGroup()
                                               .addComponent(userId, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                              .addComponent(followUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                              .addComponent(followUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                      .addGroup(jPanel1Layout.createSequentialGroup()
+                                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                      .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                      .addComponent(jLabel2))
+                                              .addGap(0, 0, Short.MAX_VALUE)))
                               .addContainerGap())
       );
       jPanel1Layout.setVerticalGroup(
@@ -87,14 +107,18 @@ public class UserControlPanel extends javax.swing.JFrame {
                                               .addGap(1, 1, 1)
                                               .addComponent(followUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                       .addComponent(userId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                              .addComponent(jLabel1)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                              .addComponent(currentFollowingScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addComponent(currentFollowingScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                               .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                       .addComponent(postTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                       .addComponent(tweetMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                              .addComponent(jLabel2)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                              .addComponent(newsFeedScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                              .addComponent(newsFeedScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
       );
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,6 +144,21 @@ public class UserControlPanel extends javax.swing.JFrame {
    /* This allows current user to follow viewed user*/
    private void followUserActionPerformed(java.awt.event.ActionEvent evt) {
 
+   }
+
+   String text;
+   private void postTweetButtonActionPerformed(java.awt.event.ActionEvent evt) {
+      text = tweetMessage.getText();
+      tweetMessage.setText("");
+
+      // TODO: post the text to observer pattern all followers
+      // user.setText();
+   }
+
+   public void update(Subject subject) {
+      if (subject instanceof User) {
+         newsFeed.append("hi");
+      }
    }
 
    /**
@@ -167,5 +206,8 @@ public class UserControlPanel extends javax.swing.JFrame {
    private javax.swing.JButton postTweet;
    private javax.swing.JTextArea tweetMessage;
    private javax.swing.JTextArea userId;
+   private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel2;
+
    // End of variables declaration
 }

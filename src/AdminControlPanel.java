@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-import org.w3c.dom.ls.LSOutput;
-
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -163,10 +161,10 @@ public class AdminControlPanel extends javax.swing.JFrame {
       );
 
       /* Create a new tree structure with root. */
-      DefaultMutableTreeNode treeNode1 = new DefaultMutableTreeNode("Root");
+      DefaultMutableTreeNode top = new DefaultMutableTreeNode("Root");
       root = new Group("Root");
 
-      jTree1.setModel(new DefaultTreeModel(treeNode1));
+      jTree1.setModel(new DefaultTreeModel(top));
       jTree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
       jTree1.addMouseListener(new MouseAdapter() {
          public void mouseClicked(MouseEvent evt) {
@@ -229,6 +227,8 @@ public class AdminControlPanel extends javax.swing.JFrame {
    private void userViewButtonActionPerformed(java.awt.event.ActionEvent evt) {
       UserControlPanel userControlPanel = new UserControlPanel();
       userControlPanel.setVisible(true);
+
+      // TODO: grab selected object from tree and send it to this panel
    }
 
    /* Adds user */
@@ -239,16 +239,15 @@ public class AdminControlPanel extends javax.swing.JFrame {
          System.out.println("Name cannot be empty");
       } else {
          DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
+         User user = new User(name);
          DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(name);
          selectedNode.add(newNode);
-
-         // TODO: We've added a node in the above code, now we need to add it to our composite pattern
       }
 
       // reload jTree model
       DefaultTreeModel model = (DefaultTreeModel)jTree1.getModel();
       model.reload();
-      System.out.println(root.toString());
+      System.out.println();
    }
 
    /* Adds group */
@@ -258,17 +257,24 @@ public class AdminControlPanel extends javax.swing.JFrame {
       if (name.isEmpty()){
          System.out.println("Name cannot be empty");
       } else {
-         Group group = new Group(name);
-
          DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
-         DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(name);
-         selectedNode.add(newNode);
+         createNode(selectedNode);
       }
 
       // reload jtree model
       DefaultTreeModel model = (DefaultTreeModel)jTree1.getModel();
       model.reload();
    }
+
+   private void createNode(DefaultMutableTreeNode top) {
+      DefaultMutableTreeNode user;
+      DefaultMutableTreeNode group;
+
+      group = new DefaultMutableTreeNode(name);
+      top.add(group);
+
+   }
+
 
    /**
     * @param args the command line arguments
