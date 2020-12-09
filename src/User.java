@@ -2,10 +2,12 @@ public class User extends Subject implements SysEntry {
 
    private String name;
    private String text;
+   Long creationTime;
 
    public User(String name) {
       this.name = name;
-      System.out.println("User added: " + this.name);
+      this.creationTime = System.currentTimeMillis();
+      System.out.println("User added: " + this.name + " at: " + this.creationTime);
    }
 
    public void setText(String text) {
@@ -17,7 +19,7 @@ public class User extends Subject implements SysEntry {
       return name + ": " + text;
    }
 
-   public void showUserDetails() {
+   public void showGroupDetails() {
       System.out.println("User Name: " + name);
    }
 

@@ -8,10 +8,12 @@ public class Group extends DefaultMutableTreeNode implements SysEntry {
    /* The list contains users and groups within this group. */
    private List<SysEntry> userList = new ArrayList<SysEntry>();
    private String name;
+   Long creationTime;
 
    public Group(String name) {
       this.name = name;
-      System.out.println("Group added: " + this.name);
+      this.creationTime = System.currentTimeMillis();
+      System.out.println("Group added: " + this.name + " at: " + creationTime);
    }
 
    public List<SysEntry> getUserList() {
@@ -30,7 +32,7 @@ public class Group extends DefaultMutableTreeNode implements SysEntry {
       userList.remove(user);
    }
 
-   public void showUserDetails() {
+   public void showGroupDetails() {
       System.out.println("Group Name: " + name);
    }
 

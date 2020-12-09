@@ -49,6 +49,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
       groupName = new JTextField();
       nameTextField = new JTextField();
       groupTextField = new JTextField();
+      creationTimeTextField = new JTextField();
       jTextFieldUser = new JTextField();
       jTextFieldGroup = new JTextField();
       leftPanel = new JPanel();
@@ -97,6 +98,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
 
       jTextFieldGroup.setEditable(false);
       jTextFieldGroup.setText("Enter Group Name:");
+
 
       GroupLayout rightPanelLayout = new GroupLayout(rightPanel);
       rightPanel.setLayout(rightPanelLayout);
@@ -213,6 +215,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
       DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
       if (selectedNode.isLeaf()) {
          userName.setText("User Name: " + selectedNode.getUserObject().toString());
+
       } else {
          userName.setText("User Name: ");
       }
@@ -330,5 +333,6 @@ public class AdminControlPanel extends javax.swing.JFrame {
    private javax.swing.JButton showTotalButton;
    private javax.swing.JTextField userName;
    private javax.swing.JButton userViewButton;
+   private javax.swing.JTextField creationTimeTextField;
    // End of variables declaration
 }
